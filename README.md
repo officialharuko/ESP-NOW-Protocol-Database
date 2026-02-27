@@ -36,52 +36,36 @@ CRUD Operations: Create, Read, and Delete entries directly from your web browser
 📋 Requirements
 Hardware
 2x ESP32 Development Boards.
-
 A 2.4GHz WiFi Network (for the Web Server and NTP time).
-
 Libraries
 ArduinoJson (v6 or v7)
-
 WiFi
-
 WebServer
-
 SPIFFS
-
 esp_now
 
 🚀 Setup Instructions
 1. Configure WiFi & MAC Address
 In the ESP-A code:
-
-Update ssid and password to match your router.
-
-Find the MAC Address of your ESP-B (the receiver).
-
+(A) Update ssid and password to match your router.
+(B) Find the MAC Address of your ESP-B (the receiver).
 Tip: Run the ESP-B code first; it prints its MAC address to the Serial Monitor.
-
 Update the receiverAddress[] array in the ESP-A code with ESP-B's MAC address.
 
 2. Flashing
-Upload the first block of code to the device you want to use as ESP-A.
-
-Upload the second block of code to the device you want to use as ESP-B.
+(A) Upload the first block of code to the device you want to use as ESP-A.
+(B) Upload the second block of code to the device you want to use as ESP-B.
 
 3. Usage
-Open the Serial Monitor for both devices to find their IP Addresses.
-
-Navigate to ESP-A's IP in your browser to add new people/actions.
-
-On ESP-A, click "Send to ESP-B" to trigger the wireless transfer.
-
-Navigate to ESP-B's IP to see the records arrive in real-time.
+(A) Open the Serial Monitor for both devices to find their IP Addresses.
+(B) Navigate to ESP-A's IP in your browser to add new people/actions.
+(C) On ESP-A, click "Send to ESP-B" to trigger the wireless transfer.
+(D) Navigate to ESP-B's IP to see the records arrive in real-time.
 
 📁 File Structure (SPIFFS)
 /data.json or /people.json: Stores the record entries in Newline Delimited JSON format.
-
 /id_counter.txt: (ESP-A only) Keeps track of the last used ID to ensure unique entry identification.
 
 ⚠️ Important Notes
 JSON Capacity: The code uses a StaticJsonDocument<512>. If you add significantly more fields to your data, you may need to increase this value.
-
 ESP-NOW & WiFi: Both devices are set to WIFI_STA mode. Since ESP-NOW and WiFi share the same radio channel, ensure both devices are connected to the same WiFi SSID to prevent channel-switching conflicts.
